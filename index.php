@@ -1,6 +1,5 @@
 
-
-
+<?php
 // --- Función de conexión MySQL con SSL ---
 function getMySqlConnection() {
     $host = "10.0.1.4";
