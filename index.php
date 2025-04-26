@@ -24,6 +24,8 @@ function getMySqlConnection() {
     if (mysqli_connect_errno()) {
         die("<div class='message error'>❌ Error MySQL (SSL): " . mysqli_connect_error() . "</div>");
     }
+else:
+    echo("conexion exitosa! ")
     return $con;
 }
 ?>
