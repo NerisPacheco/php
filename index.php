@@ -26,4 +26,4 @@ function getMySqlConnection() {
     }
     return $con;
 }
- 
+?>
