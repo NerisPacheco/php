@@ -1,9 +1,9 @@
 <?php
 // Configuración de la base de datos en Azure
-$host = "tudbserver.mysql.database.azure.com";  // Nombre del servidor Azure MySQL
-$dbname = "nombre_bd";                           // Nombre de la base de datos
-$username = "tu_usuario@tudbserver";             // Usuario de base de datos con el formato <usuario>@<servidor>
-$password = "tu_contraseña";                    // Contraseña de la base de datos
+$host = "10.0.1.4";  // Nombre del servidor Azure MySQL
+$dbname = "dayana";                           // Nombre de la base de datos
+$username = "npacheco8";             // Usuario de base de datos con el formato <usuario>@<servidor>
+$password = "Neris2202#12";                    // Contraseña de la base de datos
 
 try {
     // Crear una nueva conexión PDO, forzando SSL sin especificar certificados
