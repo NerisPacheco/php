@@ -1,23 +1,30 @@
-<?php
-// Configuración de la base de datos en Azure
-$host = "10.0.1.4";  // Nombre del servidor Azure MySQL
-$dbname = "dayana";                           // Nombre de la base de datos
-$username = "npacheco8";             // Usuario de base de datos con el formato <usuario>@<servidor>
-$password = "Neris2202#12";                    // Contraseña de la base de datos
 
-try {
-    // Crear una nueva conexión PDO, forzando SSL sin especificar certificados
-    $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8";
-    $pdo = new PDO($dsn, $username, $password, [
-        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,  // No verificar el certificado del servidor
-        PDO::MYSQL_ATTR_SSL_KEY => null,                     // No especificar clave del cliente
-        PDO::MYSQL_ATTR_SSL_CERT => null,                    // No especificar certificado del cliente
-        PDO::MYSQL_ATTR_SSL_CA => null,                      // No especificar el certificado CA
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION         // Modo de error
-    ]);
 
-    echo "Conexión exitosa a la base de datos en Azure con SSL (sin certificados explícitos).";
-} catch (PDOException $e) {
-    echo "Error de conexión: " . $e->getMessage();
+
+// --- Función de conexión MySQL con SSL ---
+function getMySqlConnection() {
+    $host = "10.0.1.4";
+    $user = "npacheco8";
+    $pass = "Neris2202#12";
+    $db   = "";
+    $port = 3306;
+ 
+    $con = mysqli_init();
+    mysqli_ssl_set($con, NULL, NULL, NULL, NULL, NULL);
+    mysqli_real_connect(
+        $con,
+        $host,
+        $user,
+        $pass,
+        $db,
+        $port,
+        NULL,
+        MYSQLI_CLIENT_SSL
+    );
+ 
+    if (mysqli_connect_errno()) {
+        die("<div class='message error'>❌ Error MySQL (SSL): " . mysqli_connect_error() . "</div>");
+    }
+    return $con;
 }
-?>
+ 
